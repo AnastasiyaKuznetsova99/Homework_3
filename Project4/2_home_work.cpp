@@ -21,23 +21,35 @@ public:
 	{
 		begin = clock_t::now();
 	}*/
+
 	void stop()
 	{
 		auto end = clock_t::now();
-		std::cout << std::chrono::duration_cast <std::chrono::seconds>(end - begin).count() << std::endl;
+		std::cout << std::chrono::duration_cast <std::chrono::milliseconds>(end - begin).count() << std::endl;
 	}
 };
 
 
 int main()
 {
-	std::array<int, 8> myArray = { 5, 3, 1, 2, 0, 7, 6, 4 };
-	std::cout << "myArray" << std::endl;
+	std::array<int, 20000> myArray;
 
-	for (auto el : myArray)
+	for (int i = 0; i < 10000; i++)
+	{
+		myArray[i] = 10000 - i ^ 2;
+	}
+
+	for (int i = 10000; i < 20000; i++)
+	{
+		myArray[i] = i - 10000;
+	}
+
+	//std::cout << "myArray" << std::endl;
+
+	/*for (auto el : myArray)
 	{
 		std::cout << el << std::endl;
-	}
+	}*/
 
 	Timer myTimer;
 	//myTimer.start();
@@ -45,10 +57,10 @@ int main()
 	myTimer.stop();
 	std::cout << "sorted myArray" << std::endl;
 
-	for (auto el : myArray)
+	/*for (auto el : myArray)
 	{
 		std::cout << el << std::endl;
-	}
+	}*/
 
 	return 0;
 }
