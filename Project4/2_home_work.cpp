@@ -11,16 +11,16 @@ private:
 	timepoint_t begin;
 
 public:
-	Timer() : begin()
+	Timer() : begin(clock_t::now())
 	{}
 
 	~Timer() noexcept
 	{}
 
-	void start()
+	/*void start()
 	{
 		begin = clock_t::now();
-	}
+	}*/
 	void stop()
 	{
 		auto end = clock_t::now();
@@ -39,8 +39,8 @@ int main()
 		std::cout << el << std::endl;
 	}
 
-	Timer myTimer = Timer();
-	myTimer.start();
+	Timer myTimer;
+	//myTimer.start();
 	std::sort(myArray.begin(), myArray.end());
 	myTimer.stop();
 	std::cout << "sorted myArray" << std::endl;
