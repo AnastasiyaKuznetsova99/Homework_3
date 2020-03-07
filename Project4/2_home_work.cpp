@@ -1,6 +1,11 @@
 #include <iostream>
 #include <chrono>
 #include <array>
+#include <vector>
+#include <deque>
+#include <list>
+#include <forward_list>
+#include <cstdlib>
 
 class Timer
 {
@@ -30,8 +35,10 @@ public:
 };
 
 
+
 int main()
 {
+	std::cout << "Array:" << std::endl;
 	std::array<int, 20000> myArray;
 
 	for (int i = 0; i < 10000; i++)
@@ -43,24 +50,73 @@ int main()
 	{
 		myArray[i] = i - 10000;
 	}
-
-	//std::cout << "myArray" << std::endl;
-
-	/*for (auto el : myArray)
-	{
-		std::cout << el << std::endl;
-	}*/
-
 	Timer myTimer;
-	//myTimer.start();
 	std::sort(myArray.begin(), myArray.end());
 	myTimer.stop();
-	std::cout << "sorted myArray" << std::endl;
 
-	/*for (auto el : myArray)
+
+	std::cout << "Vector:" << std::endl;
+	std::vector<int> myVector;
+
+	for (int i = 0; i < 10000; i++)
 	{
-		std::cout << el << std::endl;
-	}*/
+		myVector.push_back(10000 - i ^ 2);
+	}
 
+	for (int i = 10000; i < 20000; i++)
+	{
+		myVector.push_back(i - 10000);
+	}
+	Timer myTimer;
+	std::sort(myVector.rbegin(), myVector.rend());
+	myTimer.stop();
+
+
+	std::cout << "Deque:" << std::endl;
+	std::deque<int> myDeque;
+	for (int i = 0; i < 10000; i++)
+	{
+		myDeque.push_back(10000 - i ^ 2);
+	}
+
+	for (int i = 10000; i < 20000; i++)
+	{
+		myDeque.push_back(i - 10000);
+	}
+	Timer myTimer;
+	std::sort(myDeque.rbegin(), myDeque.rend());
+	myTimer.stop();
+
+
+	std::cout << "List:" << std::endl;
+	std::list<int> myList;
+	for (int i = 0; i < 10000; i++)
+	{
+		myList.push_back(10000 - i ^ 2);
+	}
+
+	for (int i = 10000; i < 20000; i++)
+	{
+		myList.push_back(i - 10000);
+	}
+	Timer myTimer;
+	myList.sort();
+	myTimer.stop();
+
+
+	std::cout << "Forward_list:" << std::endl;
+	std::forward_list<int> myForward_List;
+	for (int i = 0; i < 10000; i++)
+	{
+		myForward_List.push_front(10000 - i ^ 2);
+	}
+
+	for (int i = 10000; i < 20000; i++)
+	{
+		myForward_List.push_front(i - 10000);
+	}
+	Timer myTimer;
+	myForward_List.sort();
+	myTimer.stop();
 	return 0;
 }
