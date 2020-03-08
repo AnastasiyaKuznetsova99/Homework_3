@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="2_home_work.cpp">
+    <ClCompile Include="Map_Multimap_try.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
